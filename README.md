@@ -21,3 +21,12 @@ kubectl rollout -n argocd restart deployment argocd-server
 ```
 kubectl apply -n argocd ingress.yaml
 ```
+
+3. Enable GitHub Authentication
+
+```
+export GITHUB_CLIENT_ID=<GitHub OAuth App Client ID>
+export GITHUB_CLIENT_SECRET=<GitHub OAuth App Client Secret>
+kubectl patch -n argocd configmap argocd-cm -p "$(envsubst < dex-github.yaml)"
+kubectl rollout -n argocd restart deployment argocd-server
+```
