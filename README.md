@@ -27,6 +27,7 @@ kubectl apply -n argocd ingress.yaml
 ```
 export GITHUB_CLIENT_ID=<GitHub OAuth App Client ID>
 export GITHUB_CLIENT_SECRET=<GitHub OAuth App Client Secret>
-kubectl patch -n argocd configmap argocd-cm -p "$(envsubst < dex-github.yaml)"
+kubectl patch -n argocd configmap argocd-cm -p "$(envsubst < argocd-cm.yaml)"
+kubectl patch -n argocd configmap argocd-rbac-cm -p "$(envsubst < argocd-rbac-cm.yaml)"
 kubectl rollout -n argocd restart deployment argocd-server
 ```
